@@ -1,0 +1,56 @@
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.authContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.authBox {
+  height: 80%;
+  width: 75%;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.authHeading {
+  font-family: "Jomhuria", serif;
+  font-weight: 900;
+  font-size: 3rem;
+  color: #474444;
+  margin-bottom: 20px;
+}
+
+.authButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.authButton {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease;
+  background-color: white;
+  color: black;
+}
+
+.selected {
+  box-shadow: 0px 0px 50px 0px rgba(0, 25, 255, 0.24);
+}
+
+.formContainer {
+  padding: 50px;
+  border-radius: 8px;
+}

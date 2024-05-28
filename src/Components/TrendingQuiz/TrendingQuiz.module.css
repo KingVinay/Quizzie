@@ -1,0 +1,55 @@
+.trendingContainer {
+  padding: 20px;
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.trendingContainer h1 {
+  text-align: left;
+  color: #474444;
+  padding-left: 50px;
+  margin-bottom: 20px;
+}
+
+.quizGrid {
+  display: grid;
+  height: 70px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  padding-left: 50px;
+}
+
+.quizCard {
+  display: flex;
+  flex-direction: column;
+  color: #474444;
+  background-color: white;
+  border-radius: 8px;
+  padding-left: 15px;
+}
+
+.innerCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-left: 10px;
+  padding-right: 15px;
+}
+
+.quizCard span {
+  font-size: 1.5rem;
+  padding-top: 15px;
+  padding-right: 45px;
+}
+
+.quizCard p {
+  font-size: 0.85rem;
+  margin: 5px;
+}
+.impression {
+  color: #ff5d01;
+}
+.date {
+  color: #60b84b;
+}

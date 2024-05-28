@@ -1,0 +1,39 @@
+.statsContainer {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  width: 25%;
+  height: 7rem;
+  margin: 0 10px 0 15px;
+}
+
+.statBox span:first-child {
+  font-size: 3.5rem;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.statBox span:last-child {
+  font-size: 1.5rem;
+  padding: 45px;
+}
+
+.quiz {
+  color: #ff5d01;
+}
+.ques {
+  color: #60b84b;
+}
+.impression {
+  color: #5076ff;
+}
