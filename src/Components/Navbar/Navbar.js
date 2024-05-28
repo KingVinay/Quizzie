@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "./Navbar.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const Navbar = () => {
-  const [selected, setSelected] = useState("Dashboard");
+const Navbar = (option) => {
+  const [selected, setSelected] = useState(option);
   const navigate = useNavigate();
 
   return (
@@ -12,22 +12,26 @@ const Navbar = () => {
         <h1>QUIZZIE</h1>
       </div>
       <div className={styles.middle}>
-        <button
-          className={`${styles.navbarButton} ${
-            selected === "Dashboard" ? styles.selected : ""
-          }`}
-          onClick={() => setSelected("Dashboard")}
-        >
-          Dashboard
-        </button>
-        <button
-          className={`${styles.navbarButton} ${
-            selected === "Analytics" ? styles.selected : ""
-          }`}
-          onClick={() => setSelected("Analytics")}
-        >
-          Analytics
-        </button>
+        <Link to={`/dashboard`}>
+          <button
+            className={`${styles.navbarButton} ${
+              selected === "Dashboard" ? styles.selected : ""
+            }`}
+            onClick={() => setSelected("Dashboard")}
+          >
+            Dashboard
+          </button>
+        </Link>
+        <Link to={`/analytics`}>
+          <button
+            className={`${styles.navbarButton} ${
+              selected === "Analytics" ? styles.selected : ""
+            }`}
+            onClick={() => setSelected("Analytics")}
+          >
+            Analytics
+          </button>
+        </Link>
         <button
           className={`${styles.navbarButton} ${
             selected === "CreateQuiz" ? styles.selected : ""

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Auth from "./Components/Auth/Auth";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import ProtectedRoute from "./Components/ProtectedRoutes/ProtectedRoutes";
+import Analytics from "./Components/Analytics/Analytics";
 
 const App = () => {
   return (
@@ -14,6 +15,10 @@ const App = () => {
         <Route
           path="/dashboard"
           element={<ProtectedRoute Component={Dashboard} />}
+        />
+        <Route
+          path="/analytics"
+          element={<ProtectedRoute Component={Analytics} />}
         />
         <Route path="/" element={<Auth />} />
       </Routes>

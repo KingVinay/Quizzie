@@ -1,0 +1,20 @@
+.analyticsContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #ededed;
+}
+
+.analyticsContent {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.heading {
+  font-family: Poppins, "sans-serif";
+  font-weight: 600;
+  font-size: 3em;
+  color: #5076ff;
+  text-align: center;
+  margin-bottom: 30px;
+}
