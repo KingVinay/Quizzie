@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./AnalyticsTable.module.css";
 
 const Table = () => {
@@ -34,6 +36,7 @@ const Table = () => {
       });
       setQuizzes(quizzes.filter((quiz) => quiz._id !== quizId));
       toast.success("Quiz deleted successfully");
+      setDeleteQuizId(null);
     } catch (error) {
       console.error("Error deleting quiz:", error);
       toast.error("Failed to delete quiz");
@@ -108,13 +111,11 @@ const Table = () => {
               </td>
 
               <td>
-                <span
-                  onClick={() =>
-                    (window.location.href = `/analysis/${quiz._id}`)
-                  }
-                >
-                  <u>Question Wise Analysis</u>
-                </span>
+                <Link to={`/quizAnalysis/${quiz._id}`}>
+                  <span>
+                    <u>Question Wise Analysis</u>
+                  </span>
+                </Link>
               </td>
             </tr>
           ))}
@@ -123,11 +124,13 @@ const Table = () => {
       {deleteQuizId && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <p>Are you sure you want to delete this quiz?</p>
-            <button onClick={() => handleDelete(deleteQuizId)}>
-              Confirm Delete
-            </button>
-            <button onClick={() => setDeleteQuizId(null)}>Cancel</button>
+            <p>Are you confirm you want to delete ?</p>
+            <div className={styles.modalButtons}>
+              <button onClick={() => handleDelete(deleteQuizId)}>
+                Confirm Delete
+              </button>
+              <button onClick={() => setDeleteQuizId(null)}>Cancel</button>
+            </div>
           </div>
         </div>
       )}

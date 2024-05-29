@@ -1,0 +1,82 @@
+.analysisContent {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #ededed;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  color: #5076ff;
+}
+
+.header h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 0.85em;
+  color: #ff5d01;
+}
+
+.questionSection {
+  margin-bottom: 20px;
+}
+
+.questionSection h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+}
+
+.optionBox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  width: 10em;
+  height: 4em;
+}
+
+.statsBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  width: 17em;
+  height: 4em;
+  font-size: 0.9em;
+}
+
+.statsBox span:first-child {
+  font-size: 2em;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
