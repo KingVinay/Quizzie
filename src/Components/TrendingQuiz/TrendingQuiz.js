@@ -3,6 +3,8 @@ import axios from "axios";
 import styles from "./TrendingQuiz.module.css";
 import "font-awesome/css/font-awesome.min.css";
 
+import { Link } from "react-router-dom";
+
 const TrendingQuiz = () => {
   const token = localStorage.getItem("token");
   const [quizzes, setQuizzes] = useState([]);
@@ -26,7 +28,9 @@ const TrendingQuiz = () => {
         {quizzes.map((quiz) => (
           <div key={quiz._id} className={styles.quizCard}>
             <div className={styles.innerCard}>
-              <span>{quiz.quizName}</span>
+              <Link to={`/quiz/${quiz._id}`} className={styles.link}>
+                <span>{quiz.quizName}</span>
+              </Link>
               <p className={styles.impression}>
                 {quiz.impressions}
                 <i className="fa fa-eye"></i>

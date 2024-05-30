@@ -1,0 +1,161 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.quizComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #041325;
+  height: 100vh;
+}
+
+.quizContainer {
+  background-color: #fff;
+  width: 80%;
+  height: 80%;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quizHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.question {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.timer {
+  font-family: Poppins, "sans-serif";
+  font-weight: 700;
+  color: #d60000;
+}
+
+.options {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin-left: 4.5rem;
+  margin-top: 3rem;
+  gap: 20px;
+}
+
+.option {
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 12rem;
+  height: 4rem;
+  margin-top: 1rem;
+  margin-right: 3rem;
+  margin-left: 3rem;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 1370px) {
+  .option {
+    width: 18em;
+    height: 4.5em;
+    margin-top: 0.5em;
+    margin-right: 1em;
+    margin-left: 1em;
+    text-align: center;
+    padding-top: 3em;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 940px) {
+  .options {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin-left: 4.5rem;
+    margin-top: 3rem;
+    gap: 20px;
+  }
+  .option {
+    width: 9em;
+    height: 3em;
+    margin-top: 0.5em;
+    margin-right: 1em;
+    margin-left: 1em;
+    text-align: center;
+    padding-bottom: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quizComponent {
+    background-color: #fff;
+  }
+  .question {
+    font-size: 24px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  .options {
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1em;
+    margin-top: 1em;
+  }
+  .option {
+    width: 10em;
+    height: 3em;
+    margin-top: 0.5em;
+    margin-right: 1em;
+    margin-left: 1em;
+    text-align: center;
+    padding-bottom: 6px;
+  }
+}
+
+.optionContent {
+  display: flex;
+  color: black;
+  justify-content: space-between;
+}
+
+.selectedOption {
+  border: 2px solid #007bff;
+}
+
+.nextButton {
+  margin-top: 3em;
+  padding: 10px 20px;
+  background-color: #60b84b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.resultContainer {
+  background-color: #fff;
+  width: 80%;
+  height: 80%;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.resultContainer img {
+  width: 100px;
+  margin: 20px 0;
+}

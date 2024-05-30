@@ -8,6 +8,7 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import ProtectedRoute from "./Components/ProtectedRoutes/ProtectedRoutes";
 import Analytics from "./Components/Analytics/Analytics";
 import QuizAnalysis from "./Components/QuizAnalysis/QuizAnalyis";
+import Quiz from "./Components/Quiz/Quiz";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             path="/quizAnalysis/:quizId"
             element={<ProtectedRoute Component={QuizAnalysis} />}
           />
+          <Route path="/quiz/:quizId" element={<Quiz />} />
           <Route path="/" element={<Auth />} />
         </Routes>
       </Router>
