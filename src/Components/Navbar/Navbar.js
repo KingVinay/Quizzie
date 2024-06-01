@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styles from "./Navbar.module.css";
 import { useNavigate, Link } from "react-router-dom";
+import CreateQuiz from "../CreateQuiz/CreateQuiz";
 
 const Navbar = (option) => {
   const [selected, setSelected] = useState(option);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -36,10 +38,14 @@ const Navbar = (option) => {
           className={`${styles.navbarButton} ${
             selected === "CreateQuiz" ? styles.selected : ""
           }`}
-          onClick={() => setSelected("CreateQuiz")}
+          onClick={() => {
+            setSelected("CreateQuiz");
+            setIsModalOpen(true);
+          }}
         >
           Create Quiz
         </button>
+        {isModalOpen && <CreateQuiz onClose={() => setIsModalOpen(false)} />}
       </div>
       <div className={styles.bottom}>
         <div>
