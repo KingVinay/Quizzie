@@ -52,7 +52,6 @@ const Quiz = () => {
     if (isSubmitted) {
       return;
     }
-    console.log({ selectedOptions: selectedOptions });
     try {
       const response = await axios({
         method: "post",

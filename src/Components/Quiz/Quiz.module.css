@@ -51,6 +51,7 @@
 }
 
 .option {
+  position: relative;
   background-color: #e0e0e0;
   padding: 20px;
   border-radius: 8px;
@@ -64,6 +65,14 @@
   text-align: center;
 }
 
+.option img {
+  width: 120%;
+  height: 160%;
+  margin-top: -1.4rem;
+  margin-left: -1.2rem;
+  border-radius: inherit;
+}
+
 @media (min-width: 1370px) {
   .option {
     width: 18em;
@@ -73,6 +82,11 @@
     margin-left: 1em;
     text-align: center;
     padding-top: 3em;
+  }
+  .option img {
+    width: 115%;
+    height: 200%;
+    margin-top: -3em;
   }
 }
 
@@ -121,6 +135,15 @@
     padding-bottom: 6px;
   }
 
+  .option img {
+    width: 125%;
+    margin-left: -1.2rem;
+  }
+
+  .optionContent img {
+    margin-top: -1.95em;
+  }
+
   .score {
     padding: 80px;
   }
@@ -129,7 +152,19 @@
 .optionContent {
   display: flex;
   color: black;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.optionContent span {
+  padding-right: 10px;
+}
+
+.optionContent img {
+  width: 70%;
+  height: 70%;
+  border-radius: 12px;
+  padding: 10px 0 10px 20px;
+  object-fit: contain;
 }
 
 .selectedOption {
