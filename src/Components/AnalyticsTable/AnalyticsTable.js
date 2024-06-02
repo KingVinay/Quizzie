@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./AnalyticsTable.module.css";
@@ -62,6 +62,7 @@ const Table = () => {
 
   return (
     <div className={styles.tableContainer}>
+      <ToastContainer />
       <table className={styles.table}>
         <thead>
           <tr>
