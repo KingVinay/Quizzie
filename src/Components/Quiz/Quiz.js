@@ -18,7 +18,7 @@ const Quiz = () => {
     const fetchQuizData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/quiz/quizbyid/${quizId}`
+          `http://localhost:4000/api/quiz/getquiz/${quizId}`
         );
         setQuizData(response.data);
       } catch (error) {
@@ -113,11 +113,13 @@ const Quiz = () => {
             <div>{`0${currentQuestionIndex + 1} / 0${
               quizData.questions.length
             }`}</div>
-            {quizData.quizType === "q&a" && currentQuestion.timer && (
-              <div className={styles.timer}>{`00:${
-                timer < 10 ? `0${timer}` : timer
-              }s`}</div>
-            )}
+            {quizData.quizType === "q&a" &&
+              quizData.questions[currentQuestionIndex].timer !== "none" &&
+              currentQuestion.timer && (
+                <div className={styles.timer}>{`00:${
+                  timer < 10 ? `0${timer}` : timer
+                }s`}</div>
+              )}
           </div>
           <div className={styles.question}>{currentQuestion.questionName}</div>
           <div className={styles.options}>

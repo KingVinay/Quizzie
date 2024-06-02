@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.modalContent {
+.Content {
   background: white;
   color: #9f9f9f;
   padding: 20px;
@@ -32,33 +32,6 @@
   box-shadow: 0px 0px 10px 0px lightgray;
 }
 
-.quizTypeContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 10px 0 20px;
-}
-
-.quizTypeContainer span {
-  font-size: 1.2em;
-}
-
-.quizTypeButton {
-  flex: 0.3;
-  padding: 10px;
-  margin: 10px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px 0px lightgray;
-  cursor: pointer;
-}
-
-.quizTypeButton.selected {
-  background-color: #60b84b;
-  color: white;
-}
-
 .buttonContainer {
   display: flex;
   justify-content: space-evenly;
@@ -70,6 +43,8 @@
   border: 1px solid #ccc;
   padding: 10px 20px;
   cursor: pointer;
+  background-color: white;
+  color: black;
   box-shadow: 0px 0px 10px 0px lightgray;
 }
 
@@ -109,6 +84,8 @@
   position: absolute;
   width: 0%;
   height: 0%;
+  background-color: white;
+  color: black;
   top: -42px;
   right: -12px;
   cursor: pointer;
@@ -120,8 +97,8 @@
 }
 
 .addQuestionButton {
-  background: green;
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
   border-radius: 50%;
   width: 30px;
@@ -133,6 +110,7 @@
 }
 
 .questionIndexContainer span {
+  color: #9f9f9f;
   margin-left: 7em;
 }
 
@@ -169,7 +147,7 @@
 }
 
 .removeOptionButton {
-  background-color: red;
+  background-color: white;
   color: white;
   border: none;
   border-radius: 50%;
@@ -178,7 +156,8 @@
 }
 
 .addOptionButton {
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
   padding: 5px 10px;
   margin-top: 10px;
@@ -228,6 +207,7 @@
 }
 
 .closeButton {
+  background-color: white;
   position: relative;
   top: -25px;
   left: 17em;

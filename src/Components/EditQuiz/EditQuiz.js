@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import styles from "./EditQuiz.module.css";
+import editstyles from "./EditQuiz.module.css";
 
 const EditQuiz = ({ onClose, quizId }) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const token = localStorage.getItem("token");
-  const [quizData, setQuizData] = useState(null);
+  const [quizData, setQuizData] = useState("");
   const [questions, setQuestions] = useState([]);
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
+        console.log("Fetching quiz data for ID:", quizId);
         const response = await axios.get(
           `http://localhost:4000/api/quiz/quizbyid/${quizId}`
         );
@@ -42,7 +43,8 @@ const EditQuiz = ({ onClose, quizId }) => {
     }
   };
 
-  const handleRemoveQuestion = (index) => {
+  const handleRemoveQuestion = (index, e) => {
+    e.stopPropagation();
     const newQuestions = questions.filter((_, idx) => idx !== index);
     setQuestions(newQuestions);
     setActiveQuestionIndex(Math.max(0, index - 1));
@@ -112,24 +114,24 @@ const EditQuiz = ({ onClose, quizId }) => {
   };
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
-        {step === 1 && (
+    <div className={editstyles.modalOverlay}>
+      <div className={editstyles.Content}>
+        {step === 2 && (
           <div>
-            <div className={styles.questionIndexContainer}>
+            <div className={editstyles.questionIndexContainer}>
               {questions.map((_, index) => (
                 <button
                   key={index}
-                  className={`${styles.questionCircle} ${
-                    index === activeQuestionIndex ? styles.active : ""
+                  className={`${editstyles.questionCircle} ${
+                    index === activeQuestionIndex ? editstyles.active : ""
                   }`}
                   onClick={() => setActiveQuestionIndex(index)}
                 >
                   {index + 1}
                   {index > 0 && (
                     <button
-                      className={styles.removeQuestionButton}
-                      onClick={() => handleRemoveQuestion(index)}
+                      className={editstyles.removeQuestionButton}
+                      onClick={(e) => handleRemoveQuestion(index, e)}
                     >
                       x
                     </button>
@@ -138,7 +140,7 @@ const EditQuiz = ({ onClose, quizId }) => {
               ))}
               {questions.length < 5 && (
                 <button
-                  className={styles.addQuestionButton}
+                  className={editstyles.addQuestionButton}
                   onClick={handleAddQuestion}
                 >
                   +
@@ -146,11 +148,11 @@ const EditQuiz = ({ onClose, quizId }) => {
               )}
               <span>Max 5 questions</span>
             </div>
-            <div className={styles.scrollableContainer}>
+            <div className={editstyles.scrollableContainer}>
               {questions.map(
                 (question, questionIndex) =>
                   questionIndex === activeQuestionIndex && (
-                    <div key={questionIndex} className={styles.question}>
+                    <div key={questionIndex} className={editstyles.question}>
                       <input
                         type="text"
                         placeholder="Question"
@@ -161,9 +163,9 @@ const EditQuiz = ({ onClose, quizId }) => {
                             e.target.value;
                           setQuestions(newQuestions);
                         }}
-                        className={styles.input}
+                        className={editstyles.input}
                       />
-                      <div className={styles.optionTypeContainer}>
+                      <div className={editstyles.optionTypeContainer}>
                         <span>Option Type</span>
                         <label>
                           <input
@@ -227,9 +229,9 @@ const EditQuiz = ({ onClose, quizId }) => {
 
                       {question.optionType === "text" &&
                         question.options.map((option, optionIndex) => (
-                          <div key={optionIndex} className={styles.option}>
+                          <div key={optionIndex} className={editstyles.option}>
                             {quizData.quizType === "q&a" && (
-                              <label className={styles.correctOptionLabel}>
+                              <label className={editstyles.correctOptionLabel}>
                                 <input
                                   type="radio"
                                   name={`correctOption${questionIndex}`}
@@ -255,11 +257,11 @@ const EditQuiz = ({ onClose, quizId }) => {
                                   e.target.value
                                 )
                               }
-                              className={styles.input}
+                              className={editstyles.input}
                             />
                             {optionIndex > 1 && (
                               <button
-                                className={styles.removeOptionButton}
+                                className={editstyles.removeOptionButton}
                                 onClick={() => {
                                   const newQuestions = [...questions];
                                   newQuestions[questionIndex].options.splice(
@@ -270,7 +272,7 @@ const EditQuiz = ({ onClose, quizId }) => {
                                 }}
                               >
                                 <span style={{ color: "red" }}>
-                                  <i className="fa fa-trash"></i>
+                                  <i className="fa fa-trash fa-2x"></i>
                                 </span>
                               </button>
                             )}
@@ -279,9 +281,9 @@ const EditQuiz = ({ onClose, quizId }) => {
 
                       {question.optionType === "image url" &&
                         question.options.map((option, optionIndex) => (
-                          <div key={optionIndex} className={styles.option}>
+                          <div key={optionIndex} className={editstyles.option}>
                             {quizData.quizType === "q&a" && (
-                              <label className={styles.correctOptionLabel}>
+                              <label className={editstyles.correctOptionLabel}>
                                 <input
                                   type="radio"
                                   name={`correctOption${questionIndex}`}
@@ -307,11 +309,11 @@ const EditQuiz = ({ onClose, quizId }) => {
                                   e.target.value
                                 )
                               }
-                              className={styles.input}
+                              className={editstyles.input}
                             />
                             {optionIndex > 1 && (
                               <button
-                                className={styles.removeOptionButton}
+                                className={editstyles.removeOptionButton}
                                 onClick={() => {
                                   const newQuestions = [...questions];
                                   newQuestions[questionIndex].options.splice(
@@ -322,7 +324,7 @@ const EditQuiz = ({ onClose, quizId }) => {
                                 }}
                               >
                                 <span style={{ color: "red" }}>
-                                  <i className="fa fa-trash"></i>
+                                  <i className="fa fa-trash fa-2x"></i>
                                 </span>
                               </button>
                             )}
@@ -331,9 +333,9 @@ const EditQuiz = ({ onClose, quizId }) => {
 
                       {question.optionType === "text and image url" &&
                         question.options.map((option, optionIndex) => (
-                          <div key={optionIndex} className={styles.option}>
+                          <div key={optionIndex} className={editstyles.option}>
                             {quizData.quizType === "q&a" && (
-                              <label className={styles.correctOptionLabel}>
+                              <label className={editstyles.correctOptionLabel}>
                                 <input
                                   type="radio"
                                   name={`correctOption${questionIndex}`}
@@ -359,7 +361,7 @@ const EditQuiz = ({ onClose, quizId }) => {
                                   e.target.value
                                 )
                               }
-                              className={styles.input}
+                              className={editstyles.input}
                             />
                             <input
                               type="text"
@@ -373,11 +375,11 @@ const EditQuiz = ({ onClose, quizId }) => {
                                   e.target.value
                                 )
                               }
-                              className={styles.input}
+                              className={editstyles.input}
                             />
                             {optionIndex > 1 && (
                               <button
-                                className={styles.removeOptionButton}
+                                className={editstyles.removeOptionButton}
                                 onClick={() => {
                                   const newQuestions = [...questions];
                                   newQuestions[questionIndex].options.splice(
@@ -388,7 +390,7 @@ const EditQuiz = ({ onClose, quizId }) => {
                                 }}
                               >
                                 <span style={{ color: "red" }}>
-                                  <i className="fa fa-trash"></i>
+                                  <i className="fa fa-trash fa-2x"></i>
                                 </span>
                               </button>
                             )}
@@ -397,7 +399,7 @@ const EditQuiz = ({ onClose, quizId }) => {
 
                       {question.options.length < 4 && (
                         <button
-                          className={styles.addOptionButton}
+                          className={editstyles.addOptionButton}
                           onClick={() => {
                             const newQuestions = [...questions];
                             newQuestions[questionIndex].options.push({
@@ -412,12 +414,14 @@ const EditQuiz = ({ onClose, quizId }) => {
                       )}
 
                       {quizData.quizType === "q&a" && (
-                        <div className={styles.timerContainer}>
+                        <div className={editstyles.timerContainer}>
                           <h3>Timer</h3>
-                          <div className={styles.timerButtons}>
+                          <div className={editstyles.timerButtons}>
                             <button
-                              className={`${styles.timerButton} ${
-                                question.timer === "none" ? styles.active : ""
+                              className={`${editstyles.timerButton} ${
+                                question.timer === "none"
+                                  ? editstyles.active
+                                  : ""
                               }`}
                               onClick={() =>
                                 handleTimerChange(questionIndex, "none")
@@ -426,8 +430,8 @@ const EditQuiz = ({ onClose, quizId }) => {
                               OFF
                             </button>
                             <button
-                              className={`${styles.timerButton} ${
-                                question.timer === "5s" ? styles.active : ""
+                              className={`${editstyles.timerButton} ${
+                                question.timer === "5s" ? editstyles.active : ""
                               }`}
                               onClick={() =>
                                 handleTimerChange(questionIndex, "5s")
@@ -436,8 +440,10 @@ const EditQuiz = ({ onClose, quizId }) => {
                               5s
                             </button>
                             <button
-                              className={`${styles.timerButton} ${
-                                question.timer === "10s" ? styles.active : ""
+                              className={`${editstyles.timerButton} ${
+                                question.timer === "10s"
+                                  ? editstyles.active
+                                  : ""
                               }`}
                               onClick={() =>
                                 handleTimerChange(questionIndex, "10s")
@@ -453,11 +459,14 @@ const EditQuiz = ({ onClose, quizId }) => {
               )}
             </div>
 
-            <div className={styles.buttonContainer}>
-              <button onClick={onClose} className={styles.cancelButton}>
+            <div className={editstyles.buttonContainer}>
+              <button onClick={onClose} className={editstyles.cancelButton}>
                 Cancel
               </button>
-              <button onClick={handleEditQuiz} className={styles.createButton}>
+              <button
+                onClick={handleEditQuiz}
+                className={editstyles.createButton}
+              >
                 Edit Quiz
               </button>
             </div>
@@ -465,19 +474,19 @@ const EditQuiz = ({ onClose, quizId }) => {
         )}
 
         {step === 3 && (
-          <div className={styles.successContainer}>
-            <button onClick={onClose} className={styles.closeButton}>
+          <div className={editstyles.successContainer}>
+            <button onClick={onClose} className={editstyles.closeButton}>
               X
             </button>
             <h1>Congrats, your Quiz is Published!</h1>
-            <div className={styles.linkContainer}>
+            <div className={editstyles.linkContainer}>
               <span>{quizData.shareableLink}</span>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(quizData.shareableLink);
                   toast.success("Link copied to clipboard");
                 }}
-                className={styles.shareButton}
+                className={editstyles.shareButton}
               >
                 Share
               </button>

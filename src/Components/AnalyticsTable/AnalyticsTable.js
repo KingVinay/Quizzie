@@ -94,14 +94,15 @@ const Table = () => {
                   <span
                     style={{ color: "#854CFF" }}
                     onClick={() => {
-                      setIsModalOpen(true);
+                      setIsModalOpen(quiz._id);
                     }}
                   >
                     <i class="fa fa-edit fa-2x"></i>
                   </span>
-                  {isModalOpen && (
+                  {isModalOpen === quiz._id && (
                     <EditQuiz
-                      onClose={() => setIsModalOpen(false)}
+                      key={quiz._id}
+                      onClose={() => setIsModalOpen(null)}
                       quizId={quiz._id}
                     />
                   )}
@@ -132,8 +133,8 @@ const Table = () => {
         </tbody>
       </table>
       {deleteQuizId && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
+        <div className={styles.modalBox}>
+          <div className={styles.modalBoxContent}>
             <p>Are you confirm you want to delete ?</p>
             <div className={styles.modalButtons}>
               <button onClick={() => handleDelete(deleteQuizId)}>

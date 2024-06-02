@@ -39,7 +39,8 @@ const CreateQuiz = ({ onClose }) => {
     }
   };
 
-  const handleRemoveQuestion = (index) => {
+  const handleRemoveQuestion = (index, e) => {
+    e.stopPropagation();
     const newQuestions = questions.filter((_, idx) => idx !== index);
     setQuestions(newQuestions);
     setActiveQuestionIndex(Math.max(0, index - 1));
@@ -176,7 +177,7 @@ const CreateQuiz = ({ onClose }) => {
                   {index > 0 && (
                     <button
                       className={styles.removeQuestionButton}
-                      onClick={() => handleRemoveQuestion(index)}
+                      onClick={(e) => handleRemoveQuestion(index, e)}
                     >
                       x
                     </button>
