@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import styles from "./CreateQuiz.module.css";
+import styles from "./EditQuiz.module.css";
 
-const CreateQuiz = ({ onClose }) => {
+const EditQuiz = ({ onClose, quizId }) => {
   const [step, setStep] = useState(1);
   const token = localStorage.getItem("token");
-  const [quizName, setQuizName] = useState("");
-  const [quizType, setQuizType] = useState("");
-  const [questions, setQuestions] = useState([
-    {
-      questionName: "",
-      optionType: "text",
-      options: [{ text: "", imageUrl: "", isCorrect: false }],
-      timer: "none",
-    },
-  ]);
+  const [quizData, setQuizData] = useState(null);
+  const [questions, setQuestions] = useState([]);
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
-  const [shareableLink, setShareableLink] = useState("");
 
-  const handleQuizTypeSelect = (type) => {
-    setQuizType(type);
-  };
+  useEffect(() => {
+    const fetchQuizData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/quiz/quizbyid/${quizId}`
+        );
+        setQuizData(response.data);
+        setQuestions(response.data.questions);
+      } catch (error) {
+        console.error("Error fetching quiz data:", error);
+      }
+    };
+
+    fetchQuizData();
+  }, [quizId]);
 
   const handleAddQuestion = () => {
     if (questions.length < 5) {
@@ -65,11 +68,7 @@ const CreateQuiz = ({ onClose }) => {
     setQuestions(newQuestions);
   };
 
-  const validateStep1 = () => {
-    return quizName.trim() !== "" && quizType !== "";
-  };
-
-  const validateStep2 = () => {
+  const validateStep = () => {
     return questions.every((question) => {
       if (question.questionName.trim() === "") return false;
       if (question.options.length < 2) return false;
@@ -91,25 +90,21 @@ const CreateQuiz = ({ onClose }) => {
     });
   };
 
-  const handleCreateQuiz = async () => {
-    if (!validateStep1() || !validateStep2()) {
+  const handleEditQuiz = async () => {
+    if (!validateStep()) {
       toast.error("Please fill all fields correctly");
       return;
     }
 
     try {
-      const response = await axios({
-        method: "post",
-        url: "http://localhost:4000/api/quiz/create",
+      await axios({
+        method: "patch",
+        url: `http://localhost:4000/api/quiz/edit/${quizId}`,
         headers: { Authorization: `${token}` },
         data: {
-          quizName,
-          quizType,
           questions,
         },
       });
-
-      setShareableLink(response.data.shareableLink);
       setStep(3);
     } catch (error) {
       console.error("Error creating quiz:", error);
@@ -120,48 +115,6 @@ const CreateQuiz = ({ onClose }) => {
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
         {step === 1 && (
-          <div>
-            <input
-              type="text"
-              placeholder="Quiz name"
-              value={quizName}
-              onChange={(e) => setQuizName(e.target.value)}
-              className={styles.input}
-            />
-            <div className={styles.quizTypeContainer}>
-              <span>Quiz Type</span>
-              <div
-                className={`${styles.quizTypeButton} ${
-                  quizType === "q&a" ? styles.selected : ""
-                }`}
-                onClick={() => handleQuizTypeSelect("q&a")}
-              >
-                Q & A
-              </div>
-              <div
-                className={`${styles.quizTypeButton} ${
-                  quizType === "poll" ? styles.selected : ""
-                }`}
-                onClick={() => handleQuizTypeSelect("poll")}
-              >
-                Poll Type
-              </div>
-            </div>
-            <div className={styles.buttonContainer}>
-              <button onClick={onClose} className={styles.cancelButton}>
-                Cancel
-              </button>
-              <button
-                onClick={() => setStep(2)}
-                className={styles.continueButton}
-              >
-                Continue
-              </button>
-            </div>
-          </div>
-        )}
-
-        {step === 2 && (
           <div>
             <div className={styles.questionIndexContainer}>
               {questions.map((_, index) => (
@@ -275,7 +228,7 @@ const CreateQuiz = ({ onClose }) => {
                       {question.optionType === "text" &&
                         question.options.map((option, optionIndex) => (
                           <div key={optionIndex} className={styles.option}>
-                            {quizType === "q&a" && (
+                            {quizData.quizType === "q&a" && (
                               <label className={styles.correctOptionLabel}>
                                 <input
                                   type="radio"
@@ -327,7 +280,7 @@ const CreateQuiz = ({ onClose }) => {
                       {question.optionType === "image url" &&
                         question.options.map((option, optionIndex) => (
                           <div key={optionIndex} className={styles.option}>
-                            {quizType === "q&a" && (
+                            {quizData.quizType === "q&a" && (
                               <label className={styles.correctOptionLabel}>
                                 <input
                                   type="radio"
@@ -379,7 +332,7 @@ const CreateQuiz = ({ onClose }) => {
                       {question.optionType === "text and image url" &&
                         question.options.map((option, optionIndex) => (
                           <div key={optionIndex} className={styles.option}>
-                            {quizType === "q&a" && (
+                            {quizData.quizType === "q&a" && (
                               <label className={styles.correctOptionLabel}>
                                 <input
                                   type="radio"
@@ -458,7 +411,7 @@ const CreateQuiz = ({ onClose }) => {
                         </button>
                       )}
 
-                      {quizType === "q&a" && (
+                      {quizData.quizType === "q&a" && (
                         <div className={styles.timerContainer}>
                           <h3>Timer</h3>
                           <div className={styles.timerButtons}>
@@ -501,17 +454,11 @@ const CreateQuiz = ({ onClose }) => {
             </div>
 
             <div className={styles.buttonContainer}>
-              <button
-                onClick={() => setStep(1)}
-                className={styles.cancelButton}
-              >
-                Back
+              <button onClick={onClose} className={styles.cancelButton}>
+                Cancel
               </button>
-              <button
-                onClick={handleCreateQuiz}
-                className={styles.createButton}
-              >
-                Create Quiz
+              <button onClick={handleEditQuiz} className={styles.createButton}>
+                Edit Quiz
               </button>
             </div>
           </div>
@@ -524,10 +471,10 @@ const CreateQuiz = ({ onClose }) => {
             </button>
             <h1>Congrats, your Quiz is Published!</h1>
             <div className={styles.linkContainer}>
-              <span>{shareableLink}</span>
+              <span>{quizData.shareableLink}</span>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText(shareableLink);
+                  navigator.clipboard.writeText(quizData.shareableLink);
                   toast.success("Link copied to clipboard");
                 }}
                 className={styles.shareButton}
@@ -543,4 +490,4 @@ const CreateQuiz = ({ onClose }) => {
   );
 };
 
-export default CreateQuiz;
+export default EditQuiz;

@@ -39,6 +39,7 @@ const Quiz = () => {
     if (
       quizData &&
       quizData.quizType === "q&a" &&
+      quizData.questions[currentQuestionIndex].timer !== "none" &&
       quizData.questions[currentQuestionIndex].timer
     ) {
       const convertedTimer = splitAndConvert(

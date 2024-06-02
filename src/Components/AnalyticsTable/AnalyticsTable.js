@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./AnalyticsTable.module.css";
+import EditQuiz from "../EditQuiz/EditQuiz";
 
 const Table = () => {
   const [quizzes, setQuizzes] = useState([]);
   const [deleteQuizId, setDeleteQuizId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -91,10 +93,18 @@ const Table = () => {
                 <div className={styles.icons}>
                   <span
                     style={{ color: "#854CFF" }}
-                    onClick={() => (window.location.href = `/edit/${quiz._id}`)}
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
                   >
                     <i class="fa fa-edit fa-2x"></i>
                   </span>
+                  {isModalOpen && (
+                    <EditQuiz
+                      onClose={() => setIsModalOpen(false)}
+                      quizId={quiz._id}
+                    />
+                  )}
                   <span
                     style={{ color: "#D60000" }}
                     onClick={() => setDeleteQuizId(quiz._id)}
