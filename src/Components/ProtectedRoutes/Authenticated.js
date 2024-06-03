@@ -12,7 +12,7 @@ const useAuth = () => {
 
       if (token) {
         try {
-          const decodedToken = jwtDecode(token);
+          const decodedToken = jwtDecode(token, { header: true });
           const currentTime = Date.now() / 1000;
 
           if (decodedToken.exp > currentTime) {
