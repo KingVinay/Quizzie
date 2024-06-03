@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import "core-js/stable/atob";
 
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
