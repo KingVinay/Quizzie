@@ -31,6 +31,7 @@ const App = () => {
             path="/quizAnalysis/:quizId"
             element={<ProtectedRoute Component={QuizAnalysis} />}
           />
+
           <Route path="/quiz/:quizId" element={<Quiz />} />
           <Route path="/" element={<Auth />} />
         </Routes>

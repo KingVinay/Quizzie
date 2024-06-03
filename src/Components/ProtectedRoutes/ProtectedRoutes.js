@@ -1,9 +1,17 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import useAuth from "../ProtectedRoutes/Authenticated";
 
-export default function ProtectedRoute(props) {
+const ProtectedRoute = (props) => {
   const { Component } = props;
-  const token = localStorage.getItem("token");
+  const { isAuthenticated, loading } = useAuth();
 
-  return <>{token ? <Component /> : Navigate("/login")}</>;
-}
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  console.log("Is Authenticated:", isAuthenticated);
+  return isAuthenticated ? <Component /> : <Navigate to="/login" />;
+};
+
+export default ProtectedRoute;
