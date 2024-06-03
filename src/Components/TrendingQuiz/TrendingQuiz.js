@@ -16,12 +16,8 @@ const TrendingQuiz = () => {
         url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/trending`,
         headers: { Authorization: `${token}` },
       });
-      const value = await response.data.parse();
-      if (Array.isArray(value)) {
-        setQuizzes(value);
-      } else {
-        console.error("Fetched data is not an array:", value);
-      }
+      console.log(response.data);
+      setQuizzes(response.data);
     };
     fetchQuizzes();
   }, [token]);

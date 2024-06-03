@@ -18,6 +18,7 @@ const Stats = () => {
         url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/stats`,
         headers: { Authorization: `${token}` },
       });
+      console.log(response.data);
       setStats(response.data);
     };
     fetchStats();
