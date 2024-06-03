@@ -21,7 +21,7 @@ const Login = () => {
         }
       );
       console.log(response.data);
-      localStorage.setItem("token", response.data?.token);
+      localStorage.setItem("token", response.data.token);
       toast.success("Login Successful");
       navigate("/dashboard");
     } catch (error) {

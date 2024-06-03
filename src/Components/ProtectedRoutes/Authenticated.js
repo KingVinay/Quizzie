@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import { decode } from "base-64";
-import "core-js/stable/atob";
-
-global.atob = decode;
+import { jwtDecode } from "jwt-decode";
 
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -11,11 +8,10 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuth = () => {
       const token = localStorage.getItem("token");
-      console.log(token);
 
       if (token) {
         try {
-          const decodedToken = decode(token, { header: true });
+          const decodedToken = jwtDecode(token);
           const currentTime = Date.now() / 1000;
 
           if (decodedToken.exp > currentTime) {
