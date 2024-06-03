@@ -16,7 +16,7 @@ const EditQuiz = ({ onClose, quizId }) => {
       try {
         console.log("Fetching quiz data for ID:", quizId);
         const response = await axios.get(
-          `http://localhost:4000/api/quiz/quizbyid/${quizId}`
+          `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/quizbyid/${quizId}`
         );
         setQuizData(response.data);
         setQuestions(response.data.questions);
