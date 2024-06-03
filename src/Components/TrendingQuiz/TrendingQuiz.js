@@ -16,7 +16,7 @@ const TrendingQuiz = () => {
         url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/trending`,
         headers: { Authorization: `${token}` },
       });
-      const value = await response.data;
+      const value = await response.data.parse();
       if (Array.isArray(value)) {
         setQuizzes(value);
       } else {
