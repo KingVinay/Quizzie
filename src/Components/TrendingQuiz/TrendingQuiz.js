@@ -16,11 +16,11 @@ const TrendingQuiz = () => {
         url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/trending`,
         headers: { Authorization: `${token}` },
       });
-      const data = await response.json();
-      if (Array.isArray(data)) {
-        setQuizzes(data);
+      const value = await response.data.json();
+      if (Array.isArray(value)) {
+        setQuizzes(value);
       } else {
-        console.error("Fetched data is not an array:", data);
+        console.error("Fetched data is not an array:", value);
       }
     };
     fetchQuizzes();
