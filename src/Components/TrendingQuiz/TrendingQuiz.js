@@ -25,27 +25,29 @@ const TrendingQuiz = () => {
     <div className={styles.trendingContainer}>
       <h1>Trending Quiz's</h1>
       <div className={styles.quizGrid}>
-        {quizzes.map((quiz) => (
-          <div key={quiz._id} className={styles.quizCard}>
-            <div className={styles.innerCard}>
-              <Link to={`/quiz/${quiz._id}`} className={styles.link}>
-                <span>{quiz.quizName}</span>
-              </Link>
-              <p className={styles.impression}>
-                {quiz.impressions}
-                <i className="fa fa-eye"></i>
+        {quizzes &&
+          quizzes.length &&
+          quizzes.map((quiz) => (
+            <div key={quiz._id} className={styles.quizCard}>
+              <div className={styles.innerCard}>
+                <Link to={`/quiz/${quiz._id}`} className={styles.link}>
+                  <span>{quiz.quizName}</span>
+                </Link>
+                <p className={styles.impression}>
+                  {quiz.impressions}
+                  <i className="fa fa-eye"></i>
+                </p>
+              </div>
+              <p className={styles.date}>
+                Created on:{" "}
+                {new Date(quiz.createdAt)
+                  .toDateString()
+                  .split(" ")
+                  .slice(1)
+                  .join(" ")}
               </p>
             </div>
-            <p className={styles.date}>
-              Created on:{" "}
-              {new Date(quiz.createdAt)
-                .toDateString()
-                .split(" ")
-                .slice(1)
-                .join(" ")}
-            </p>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
