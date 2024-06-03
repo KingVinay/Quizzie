@@ -13,7 +13,7 @@ const TrendingQuiz = () => {
     const fetchQuizzes = async () => {
       const response = await axios({
         method: "get",
-        url: "http://localhost:4000/api/quiz/trending",
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/trending`,
         headers: { Authorization: `${token}` },
       });
       setQuizzes(response.data);

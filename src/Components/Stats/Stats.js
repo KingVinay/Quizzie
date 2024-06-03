@@ -15,7 +15,7 @@ const Stats = () => {
     const fetchStats = async () => {
       const response = await axios({
         method: "get",
-        url: "http://localhost:4000/api/quiz/stats",
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/stats`,
         headers: { Authorization: `${token}` },
       });
       setStats(response.data);

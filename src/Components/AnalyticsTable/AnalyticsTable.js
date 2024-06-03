@@ -17,7 +17,7 @@ const Table = () => {
       try {
         const response = await axios({
           method: "get",
-          url: "http://localhost:4000/api/quiz/all",
+          url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/all`,
           headers: { Authorization: `${token}` },
         });
         setQuizzes(response.data);
@@ -33,7 +33,7 @@ const Table = () => {
     try {
       await axios({
         method: "delete",
-        url: `http://localhost:4000/api/quiz/delete/${quizId}`,
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/delete/${quizId}`,
         headers: { Authorization: `${token}` },
       });
       setQuizzes(quizzes.filter((quiz) => quiz._id !== quizId));
@@ -49,7 +49,7 @@ const Table = () => {
     try {
       const response = await axios({
         method: "get",
-        url: `http://localhost:4000/api/quiz/share/${quizId}`,
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/share/${quizId}`,
         headers: { Authorization: `${token}` },
       });
       navigator.clipboard.writeText(response.data.shareableLink);

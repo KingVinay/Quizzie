@@ -101,7 +101,7 @@ const EditQuiz = ({ onClose, quizId }) => {
     try {
       await axios({
         method: "patch",
-        url: `http://localhost:4000/api/quiz/edit/${quizId}`,
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/edit/${quizId}`,
         headers: { Authorization: `${token}` },
         data: {
           questions,

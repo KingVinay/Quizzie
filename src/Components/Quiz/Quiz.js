@@ -18,7 +18,7 @@ const Quiz = () => {
     const fetchQuizData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/quiz/getquiz/${quizId}`
+          `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/getquiz/${quizId}`
         );
         setQuizData(response.data);
       } catch (error) {
@@ -56,7 +56,7 @@ const Quiz = () => {
     try {
       const response = await axios({
         method: "post",
-        url: `http://localhost:4000/api/quiz/submit/${quizId}`,
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/submit/${quizId}`,
         data: {
           selectedOptions: selectedOptions,
         },

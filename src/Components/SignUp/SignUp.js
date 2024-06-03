@@ -19,12 +19,15 @@ const SignUp = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:4000/api/auth/register", {
-        name,
-        email,
-        password,
-        confirmPassword,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_HOST}/api/auth/register`,
+        {
+          name,
+          email,
+          password,
+          confirmPassword,
+        }
+      );
       toast.success("Sign Up Successful");
       navigate("/login");
     } catch (error) {

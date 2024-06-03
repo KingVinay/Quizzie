@@ -13,7 +13,7 @@ const QuestionAnalysis = () => {
       try {
         const response = await axios({
           method: "get",
-          url: `http://localhost:4000/api/quiz/analytics/${quizId}`,
+          url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/analytics/${quizId}`,
           headers: { Authorization: `${token}` },
         });
         setQuizData(response.data);
