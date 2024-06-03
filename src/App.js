@@ -9,6 +9,7 @@ import ProtectedRoute from "./Components/ProtectedRoutes/ProtectedRoutes";
 import Analytics from "./Components/Analytics/Analytics";
 import QuizAnalysis from "./Components/QuizAnalysis/QuizAnalyis";
 import Quiz from "./Components/Quiz/Quiz";
+import NotFound from "./Components/NotFound/NotFound";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           />
 
           <Route path="/quiz/:quizId" element={<Quiz />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>

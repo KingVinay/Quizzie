@@ -16,7 +16,6 @@ const TrendingQuiz = () => {
         url: `${process.env.REACT_APP_BACKEND_HOST}/api/quiz/trending`,
         headers: { Authorization: `${token}` },
       });
-      console.log(response.data);
       setQuizzes(response.data);
     };
     fetchQuizzes();

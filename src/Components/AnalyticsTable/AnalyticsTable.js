@@ -62,7 +62,6 @@ const Table = () => {
 
   return (
     <div className={styles.tableContainer}>
-      <ToastContainer />
       <table className={styles.table}>
         <thead>
           <tr>
@@ -146,6 +145,7 @@ const Table = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./SignUp.module.css";
 
@@ -74,6 +74,7 @@ const SignUp = () => {
         />
       </div>
       <button type="submit">Sign Up</button>
+      <ToastContainer />
     </form>
   );
 };

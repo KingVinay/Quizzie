@@ -49,7 +49,7 @@ const Navbar = (option) => {
       </div>
       <div className={styles.bottom}>
         <div>
-          <hr />
+          <hr className={styles.line} />
         </div>
         <button
           className={styles.navbarButton}

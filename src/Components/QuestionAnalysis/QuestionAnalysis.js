@@ -50,7 +50,7 @@ const QuestionAnalysis = () => {
               ? renderPollOptions(question.options)
               : renderQAOptions(question, quizData)}
           </div>
-          <hr />
+          <hr className={styles.hline} />
         </div>
       ))}
     </div>
