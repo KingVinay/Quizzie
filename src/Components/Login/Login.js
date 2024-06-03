@@ -20,8 +20,7 @@ const Login = () => {
           password,
         }
       );
-      console.log(response.data);
-      localStorage.setItem("token", JSON.stringify(response.data.token));
+      localStorage.setItem("token", response?.data?.token);
       toast.success("Login Successful");
       navigate("/dashboard");
     } catch (error) {
