@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./SignUp.module.css";
 
@@ -29,7 +29,7 @@ const SignUp = () => {
         }
       );
       toast.success("Sign Up Successful");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       toast.error("Sign Up Failed");
     }
@@ -74,7 +74,6 @@ const SignUp = () => {
         />
       </div>
       <button type="submit">Sign Up</button>
-      <ToastContainer />
     </form>
   );
 };

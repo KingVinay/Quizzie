@@ -3,17 +3,14 @@ import { Link } from "react-router-dom";
 
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./Auth.module.css";
 
 const Auth = (value) => {
-  const [selectedForm, setSelectedForm] = useState(value);
+  const [selectedForm, setSelectedForm] = useState("login");
 
   return (
     <div className={styles.authContainer}>
-      <ToastContainer />
       <div className={styles.authBox}>
         <h1 className={styles.authHeading}>QUIZZIE</h1>
         <div className={styles.authButtons}>

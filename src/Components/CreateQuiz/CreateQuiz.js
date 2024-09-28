@@ -539,7 +539,6 @@ const CreateQuiz = ({ onClose }) => {
           </div>
         )}
       </div>
-      <ToastContainer />
     </div>
   );
 };

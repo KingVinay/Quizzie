@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./AnalyticsTable.module.css";
@@ -145,7 +145,6 @@ const Table = () => {
           </div>
         </div>
       )}
-      <ToastContainer />
     </div>
   );
 };

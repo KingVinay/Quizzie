@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Login.module.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("guest@quizzie.com");
+  const [password, setPassword] = useState("asdf@1234");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -49,7 +49,6 @@ const Login = () => {
         />
       </div>
       <button type="submit">Log In</button>
-      <ToastContainer />
     </form>
   );
 };
